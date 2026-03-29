@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://mern2408:hrmanagment@cluster0.qxv1zbq.mongodb.net/hrmanagment?appName=Cluster0').then(() => {
+mongoose.connect(process.env.DB_URL).then(() => {
     console.log("connect to mongodb");
 
 })
