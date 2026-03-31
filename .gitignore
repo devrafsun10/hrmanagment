@@ -13,6 +13,8 @@ yarn-debug.log*
 # Environment
 .env
 .env.test
+.env.development
+.env.production
 
 # Build / Output
 dist/
