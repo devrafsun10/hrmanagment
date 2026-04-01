@@ -14,7 +14,11 @@ let registrationController = (req,res) => {
     
     createUser.save();//for saving the user to the database
 
-    res.send(createUser) //for sending the created user as a response to the fontend
+    res.send({
+        id: createUser._id,
+        username: createUser.username,
+        email: createUser.email,
+    }) //for sending the created user as a response to the fontend
    
 
     //
