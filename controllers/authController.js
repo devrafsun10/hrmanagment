@@ -1,9 +1,21 @@
 const {model} = require("mongoose");
+const User = require("../models/userSchema");
 
 let registrationController = (req,res) => {
     const {username,email,password} = req.body;
+
+     //todo for next -> validation 
+
+    let createUser = new User({
+        username: username,
+        email: email,
+        password: password,
+    })
     
-    //todo for next -> validation 
+    createUser.save();//for saving the user to the database
+
+    res.send(createUser) //for sending the created user as a response to the fontend
+   
 
     //
 }
