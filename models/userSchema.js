@@ -19,7 +19,7 @@ const userSchema = new Schema({
         required: [true, "password is required"],
         min: [5, "password must be at least 5 characters long"],//validate password length
         max: [8, "password must be at most 8 characters long"],//validate password length
-        match: [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, 'Please fill a valid password'],//validate password format using regex (at least one digit, one lowercase leeter, one uppercase letter and one special character)
+        // match: [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, 'Please fill a valid password'],//validate password format using regex (at least one digit, one lowercase leeter, one uppercase letter and one special character)
     },
 
     photo: {
