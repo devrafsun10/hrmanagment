@@ -25,12 +25,12 @@ const userSchema = new Schema({
     photo: {
         type: String,
     },
-    nid: {
-        type: Number,
-        min: [10, "NID must be at least 10 characters long"],//validate NiD length
-        max: [17, "NID must be at most 17 character long"],//validate nid length
-        unique: true, //ensure nid is unique in the database
-    },
+    // nid: {
+    //     type: Number,
+    //     min: [10, "NID must be at least 10 characters long"],//validate NiD length
+    //     max: [17, "NID must be at most 17 character long"],//validate nid length
+    //     unique: true, //ensure nid is unique in the database
+    // },
     address: {
         type: String,
     }
