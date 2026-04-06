@@ -94,6 +94,12 @@ let loginController = async (req,res) => {
 
         // console.log("check", exsistingUser);
         
+        if(exsistingUser.isLogin) {
+            return res.status(400).json({
+                success:false,
+                message: "please logout from another device to Login"
+            })
+        }//we used return statement to stop the exection of the function if the user is already logged in from another device and send a response to the frontend with a message that please logout from another device to Login
 
 
         if (!exsistingUser) {
@@ -108,6 +114,8 @@ let loginController = async (req,res) => {
         // console.log("pass:",pass);
 
         if(pass){
+            exsistingUser.isLogin = true; //for updating the isLogin field of the user to true in the database if the password is correct
+            exsistingUser.save(); //for saving the updated user to the database
             return res.status(200).json({
                 success: true,
                 message: "Login successful"
@@ -121,4 +129,15 @@ let loginController = async (req,res) => {
         
 }
 
-module.exports = { registrationController, loginController };
+let logOutController = async (req,res) => {
+    let {id} = req.body; //for getting the user id from the request body
+    let exsistingUser = await User.findOne({ _id: id })//for checking if the user with the same id already exists in the database 
+    exsistingUser.isLogin = false; //for updating the isLogin field of the user to false in the database for logging out the user
+    exsistingUser.save(); //for saving the updated user to the database
+    res.status(200).json({
+        success: true,
+        message: "Logout successful",
+    }) 
+}
+
+module.exports = { registrationController, loginController,logOutController };

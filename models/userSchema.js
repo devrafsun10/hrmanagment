@@ -33,6 +33,11 @@ const userSchema = new Schema({
     // },
     address: {
         type: String,
+    },
+
+    isLogin :{
+        type: Boolean,
+        default: false,
     }
 })
 

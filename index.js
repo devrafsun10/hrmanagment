@@ -4,7 +4,8 @@ require('dotenv').config()
 const express = require('express');
 
 const dbConnection = require('./config/dbConnection');
-const { registrationController, loginController } = require('./controllers/authController');
+const { registrationController, loginController, logOutController } = require('./controllers/authController');
+const { profileCreateController } = require("./controllers/profileCreateController");
 const app = express();
 
 app.use(express.json());
@@ -13,6 +14,10 @@ dbConnection();
 
 app.post('/registration', registrationController)
 app.post('/login', loginController)
+app.post('/logout', logOutController)
+
+//profile creation route
+app.post('/profilecreate', profileCreateController)
 
 console.log(process.env.PORT);
 
