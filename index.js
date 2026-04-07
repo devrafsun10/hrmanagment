@@ -5,7 +5,7 @@ const express = require('express');
 
 const dbConnection = require('./config/dbConnection');
 const { registrationController, loginController, logOutController } = require('./controllers/authController');
-const { profileCreateController } = require("./controllers/profileCreateController");
+const { profileCreateController, getProfile } = require("./controllers/profileCreateController");
 const app = express();
 
 app.use(express.json());
@@ -18,6 +18,7 @@ app.post('/logout', logOutController)
 
 //profile creation route
 app.post('/profilecreate', profileCreateController)
+app.get('/getProfile', getProfile)
 
 console.log(process.env.PORT);
 

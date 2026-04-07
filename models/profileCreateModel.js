@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const { Schema} = mongoose;
 
 const profileSchema = new Schema({
-    // employeeId : {
-    //     type: String,
-    //     required: true
-    // },
+    employeeId : {
+        type: String,
+        required: true
+    },
     email : {
         type: String,
         required: true,
@@ -32,6 +32,20 @@ const profileSchema = new Schema({
     dob : {
         type: String,
         required : true,
+    },
+    designation: {
+        type: String,
+        required: true,
+        trim: true,//to remove whitespace from the beginning and end of the degignation string
+        enum: [
+            "Software Engineer",
+            "Frontend Developer",
+            "Backend Developer",
+            "Full Stack Developer",
+            "HR",
+            "Manager",
+            "Intern"
+        ]
     }
 
 })
