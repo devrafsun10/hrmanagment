@@ -46,6 +46,11 @@ const profileSchema = new Schema({
             "Manager",
             "Intern"
         ]
+    },
+
+    isHold : {
+        type : Boolean,
+        default : false
     }
 
 })

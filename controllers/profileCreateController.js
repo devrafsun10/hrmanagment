@@ -85,4 +85,15 @@ let updateProfile = async (req,res) => {
     })
 }
 
-module.exports = { profileCreateController, getProfile, getSingleProfile, updateProfile }
+let holdProfile = async (req,res) => {
+    let { id} = req.body //for getting the profile id from the request body
+
+    let existingUser = await Profile.findOne({_id : id})//for checking if the profile with the same id already exists in the database
+
+    existingUser.isHold = true; //for updating the isHold field of the profile to true in the databse for holding the profile
+    existingUser.save() // for saving the updated profile to the database
+
+    res.send("profile hold successfully")
+}
+
+module.exports = { profileCreateController, getProfile, getSingleProfile, updateProfile,holdProfile }
