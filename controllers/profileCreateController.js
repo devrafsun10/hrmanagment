@@ -73,10 +73,16 @@ let getSingleProfile = async (req,res) => {
     
 }
 
-// let updateProfile = async (req,res) => {
-//     let { id} = req.params// for getting the profile id from the request parameters
+let updateProfile = async (req,res) => {
+    let { id} = req.params// for getting the profile id from the request parameters
 
-//     let data = await Profile.findByIdAndUpdate()
-// }
+    let data = await Profile.findByIdAndUpdate({_id : id}, req.body, {new : true})//for updating a single profile in the database by matching the id from the request parameters with the _id field in the database and updating the profile with the data recived from the frontend in the request body and return the updated profile data and store it in a variable called data
 
-module.exports = { profileCreateController, getProfile, getSingleProfile }
+    res.status(200).json({
+        success : true,
+        message : "update successfull",
+        data : data
+    })
+}
+
+module.exports = { profileCreateController, getProfile, getSingleProfile, updateProfile }
