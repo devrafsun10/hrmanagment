@@ -57,4 +57,26 @@ let getProfile = async (req,res) => {
     })
 }
 
-module.exports = { profileCreateController, getProfile }
+let getSingleProfile = async (req,res) => {
+    let { id } = req.params//for getting the profile id from the request parameters
+
+    let data = await Profile.findOne({_id : id}) //for getting a single profile from the database by matching the id from the request parameters with the _id field in the daatabase and store it in a variable called data
+
+    res.status(200).json({
+        success : true,
+        message : `${data.name} profile data`,
+        data : data    
+    })//we used templete literals to send the name of the profile in the response message and send the peofile data in the response body to the frontend
+
+
+    console.log(data);
+    
+}
+
+// let updateProfile = async (req,res) => {
+//     let { id} = req.params// for getting the profile id from the request parameters
+
+//     let data = await Profile.findByIdAndUpdate()
+// }
+
+module.exports = { profileCreateController, getProfile, getSingleProfile }
