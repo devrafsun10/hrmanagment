@@ -96,4 +96,10 @@ let holdProfile = async (req,res) => {
     res.send("profile hold successfully")
 }
 
-module.exports = { profileCreateController, getProfile, getSingleProfile, updateProfile,holdProfile }
+let getHoldProfile = async (req,res) => {
+    let data = await Profile.find({isHold : {$eq:true}})//for getting all the profiles from the database where the isHold field is equal to true and store it in a variable called data
+
+    res.send(data)//for sending the data of the hold profiles to the frontend in the response body
+}//we used the $eq operator to check if the isHold field is equal to true in the database and get all the profiles that are on hold and send it to the frontend in the response body
+
+module.exports = { profileCreateController, getProfile, getSingleProfile, updateProfile,holdProfile, getHoldProfile }

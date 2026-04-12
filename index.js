@@ -5,7 +5,7 @@ const express = require('express');
 
 const dbConnection = require('./config/dbConnection');
 const { registrationController, loginController, logOutController } = require('./controllers/authController');
-const { profileCreateController, getProfile, getSingleProfile, updateProfile, holdProfile } = require("./controllers/profileCreateController");
+const { profileCreateController, getProfile, getSingleProfile, updateProfile, holdProfile, getHoldProfile } = require("./controllers/profileCreateController");
 const app = express();
 
 app.use(express.json());
@@ -21,6 +21,7 @@ app.post('/profilecreate', profileCreateController)
 app.post('/update/:id', updateProfile)
 app.post('/holdprofile', holdProfile)
 app.get('/getProfile', getProfile)
+app.get('/getHoldProfile', getHoldProfile)
 app.get('/getProfile/:id', getSingleProfile)//for getting a single profile by id from the dtabase and send it to the frontend in the response body
 
 console.log(process.env.PORT);
