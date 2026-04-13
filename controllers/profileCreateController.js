@@ -102,4 +102,17 @@ let getHoldProfile = async (req,res) => {
     res.send(data)//for sending the data of the hold profiles to the frontend in the response body
 }//we used the $eq operator to check if the isHold field is equal to true in the database and get all the profiles that are on hold and send it to the frontend in the response body
 
-module.exports = { profileCreateController, getProfile, getSingleProfile, updateProfile,holdProfile, getHoldProfile }
+let deleteProfile = async (req,res) => {
+    let { id} = req.params//for getting the profile id from the request parameters
+
+    let data = await Profile.findByIdAndDelete({_id : id})//for deleting a single profile from the database by matching the id from the request parameters with the _id field in the database and store the deleted profile data in a variable called data
+
+    res.status(410).json({
+        success : true,
+        message : "profile deleted successfully",
+        data : data
+    })
+
+}
+
+module.exports = { profileCreateController, getProfile, getSingleProfile, updateProfile,holdProfile, getHoldProfile, deleteProfile }
